@@ -14,7 +14,6 @@ function random_img() {
 }
 
 export default function App() {
-    const [bg, setBg] = useState("");
     const [hours, setHours] = useState(""); //  Clock 컴포넌트에서 받아온 hours 저장.
 
     // => children컴포넌트에서 data를 parent로 가져오기 위한 function.
@@ -24,7 +23,7 @@ export default function App() {
 
     // => background img.
     useEffect(() => {
-        setBg(random_img());
+        random_img();
     }, []);
 
     return (
