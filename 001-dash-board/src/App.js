@@ -1,4 +1,5 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React from "react";
+import Weather from "./Weather";
 import Clock from "./Clock";
 import User from "./User";
 import Todos from "./Todos";
@@ -14,23 +15,14 @@ function random_img() {
 }
 
 export default function App() {
-    const [hours, setHours] = useState(""); //  Clock 컴포넌트에서 받아온 hours 저장.
-
-    // => children컴포넌트에서 data를 parent로 가져오기 위한 function.
-    const hoursData = (hours) => {
-        setHours(hours);
-    };
-
-    // => background img.
-    useEffect(() => {
-        random_img();
-    }, []);
+    random_img();
 
     return (
-        <Fragment>
-            <Clock getHours={hoursData} />
-            <User sendHours={hours} />
+        <>
+            <Weather />
+            <Clock />
+            <User />
             <Todos />
-        </Fragment>
+        </>
     );
 }
