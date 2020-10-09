@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
 export default function Clock() {
     const [date, setDate] = useState(new Date()); //  state 생성, 현재 Date로 init
@@ -16,7 +17,11 @@ export default function Clock() {
 
     return (
         <div>
-            <h1>{`${hours < 10 ? `0${hours}` : hours} : ${minutes < 10 ? `0${minutes}` : minutes}`}</h1>
+            <Time>{`${hours < 10 ? `0${hours}` : hours} : ${minutes < 10 ? `0${minutes}` : minutes}`}</Time>
         </div>
     );
 }
+
+const Time = styled.h1`
+    text-shadow: 2px 2px 2px black;
+`;

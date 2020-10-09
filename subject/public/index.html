@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+</head>
+
+<body>
+    <div style="display: flex;">
+        <form id="target" method="POST">
+            검색 -> <input type="text" name="search">
+        </form>
+        <button class="go">Go</button>
+    </div>
+
+    <div style="height: 10px;"></div>
+    <div class="result"></div>
+    <script>
+        document.querySelector(".go").addEventListener("click", () => {
+            let inputData = document.forms[0].elements[0].value;
+            console.log(inputData);
+            sendAjax("http://127.0.0.1:3000/searching", inputData);
+            document.forms[0].elements[0].value = "";
+        });
+
+        function sendAjax(url, data) {
+            let value = { "search": data };
+            value = JSON.stringify(value);
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", url);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(value);
+
+            xhr.addEventListener("load", () => {
+                let result = JSON.parse(xhr.responseText);
+                console.log(result);
+                document.querySelector(".result").innerHTML = result.search;
+            });
+        }
+
+    </script>
+</body>
+
+</html>
